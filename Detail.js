@@ -47,17 +47,27 @@ export default class DetailScreen extends Component {
         navigate('ChapterDetail', { chapter: chapter })
     }
 
-    render() {
+    ListHeaderComponent() {
         novel = this.props.navigation.state.params.novel
         return (
-            <View style={{ flex: 1, paddingVertical: 10 }}>
+            <View style={{flex: 1}}>
                 <Image style={{ width: 100, height: 120, margin: 10 }} source={{ uri: ("http:" + novel.Coverimg) }} />
                 <Text>{novel.Title}</Text>
                 <Text style={{ fontSize: 14 }}>{novel.Author}</Text>
-                <Text style={{ fontSize: 14, height: 100 }}>{novel.Summary}</Text>
+                <Text style={{ fontSize: 14 }}>{novel.Summary}</Text>
+                <View style={{height:1, backgroundColor:'#abc', marginVertical:10}}></View>
+            </View>
+        )
+    }
 
+
+    render() {
+        novel = this.props.navigation.state.params.novel
+        return (
+            <View style={{ flex: 1, paddingVertical: 10 }}>                
                 <FlatList
                     data={this.state.data}
+                    ListHeaderComponent={this.ListHeaderComponent.bind(this)}
                     renderItem={({ item }) =>
                         <TouchableOpacity style={{ height: 40 }} onPress={() => {
                             this.showChapterDetail(item)
