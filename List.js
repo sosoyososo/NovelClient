@@ -36,6 +36,9 @@ export default class ListScreen extends Component {
   }
 
   loadData(page) {
+    if (this.state.isLoading || this.state.isRefresh) {
+      return
+    }
     if (0 == page) {
       this.setState({
         isRefresh: true,
@@ -84,6 +87,7 @@ export default class ListScreen extends Component {
           onEndReached={() => 
             this.loadData(this.state.page)
           }
+          keyExtractor={(item, index) => index}
           renderItem={({ item }) =>
             <TouchableOpacity style={{ flex: 1, marginVertical: 5, marginHorizontal: 5 }} onPress={
               () => {

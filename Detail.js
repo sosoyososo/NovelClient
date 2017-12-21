@@ -30,6 +30,9 @@ export default class DetailScreen extends Component {
     }
 
     loadData(page) {
+        if (this.state.isLoading || this.state.isRefresh) {
+            return
+        }
         novel = this.props.navigation.state.params.novel
         if (0 == page) {
             this.setState({
@@ -91,6 +94,7 @@ export default class DetailScreen extends Component {
                     onRefresh={() => {
                         this.loadData(0)
                     }}
+                    keyExtractor={(item, index) => index}x
                     refreshing={this.state.isRefresh}
                     onEndReached={() =>
                         this.loadData(this.state.page)
