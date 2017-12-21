@@ -25,7 +25,9 @@ export default class ListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: false,
+      isRefresh: false,
+      page : 0
     }
   }
 
@@ -34,11 +36,29 @@ export default class ListScreen extends Component {
   }
 
   loadData(page) {
-    fetch("http://localhost:9090/novels?page=0")
+    if (0 == page) {
+      this.setState({
+        isRefresh: true,
+        isLoading: false
+      })
+    } else {
+      this.setState({
+        isRefresh: false,
+        isLoading: true
+      })
+    }
+    fetch("http://localhost:9090/novels?page="+page.toString())
       .then((response) => response.json())
       .then((responseJson) => {
+        array = responseJson
+        if (page > 0) {
+          array = this.state.data.concat(responseJson)
+        }
         this.setState({
-          data: responseJson
+          data: array,
+          isLoading: false,
+          isRefresh: false,
+          page:page+1
         }, function () {
         });
       })
@@ -57,6 +77,13 @@ export default class ListScreen extends Component {
       <View style={{ flex: 1 }}>
         <FlatList
           data={this.state.data}
+          onRefresh={() => {
+            this.loadData(0)
+          }}
+          refreshing={this.state.isRefresh}
+          onEndReached={() => 
+            this.loadData(this.state.page)
+          }
           renderItem={({ item }) =>
             <TouchableOpacity style={{ flex: 1, marginVertical: 5, marginHorizontal: 5 }} onPress={
               () => {
