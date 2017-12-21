@@ -1,5 +1,5 @@
 import {
-  StackNavigator,  
+  StackNavigator,
 } from 'react-navigation';
 
 import ListScreen from './List'
@@ -12,4 +12,4 @@ const App = StackNavigator({
   ChapterDetail: { screen: ChapterDetailScreen },
 });
 
-export default  App;
+export default App;
