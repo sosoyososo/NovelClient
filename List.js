@@ -10,6 +10,7 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
+  Button,
   Dimensions,
   View
 } from 'react-native';
@@ -18,9 +19,12 @@ var { windowHeight, windowWidth } = Dimensions.get('window');
 
 
 export default class ListScreen extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     title: '首页',
-  };
+    headerRight: <Button title={'搜索'} onPress={(function (navigation) {      
+      this.navigate('Search')
+    }).bind(navigation)} />
+  });
 
   constructor(props) {
     super(props);
