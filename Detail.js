@@ -8,13 +8,9 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
+import NovelView from './NovelView'
 
-export default class DetailScreen extends Component {
-    static navigationOptions = {
-        title: '详情',
-    };
-
-
+export default class DetailScreen extends Component {    
     constructor(props) {
         super(props);
         this.state = {
@@ -67,18 +63,17 @@ export default class DetailScreen extends Component {
 
     showChapterDetail(chapter) {
         const { navigate } = this.props.navigation;
-        navigate('ChapterDetail', { chapter: chapter })
+        navigate('ChapterDetail', { chapter: chapter , titleName: chapter.Title})
     }
 
     ListHeaderComponent() {
         novel = this.props.navigation.state.params.novel
         return (
-            <View style={{ flex: 1 }}>
-                <Image style={{ width: 100, height: 120, margin: 10 }} source={{ uri: ("http:" + novel.Coverimg) }} />
-                <Text>{novel.Title}</Text>
-                <Text style={{ fontSize: 14 }}>{novel.Author}</Text>
-                <Text style={{ fontSize: 14 }}>{novel.Summary}</Text>
-                <View style={{ height: 1, backgroundColor: '#abc', marginVertical: 10 }}></View>
+            <View> 
+                <NovelView item={novel} />
+                <View style={{height:5}} />
+                <View style={{height:1, marginHorizontal:5, backgroundColor:'#ccc'}} />
+                <View style={{height:5}} />
             </View>
         )
     }
@@ -100,10 +95,11 @@ export default class DetailScreen extends Component {
                         this.loadData(this.state.page)
                     }
                     renderItem={({ item }) =>
-                        <TouchableOpacity style={{ height: 40 }} onPress={() => {
+                        <TouchableOpacity style={{marginHorizontal:5 }} onPress={() => {
                             this.showChapterDetail(item)
                         }}>
-                            <Text>{item.Title}</Text>
+                            <Text style={{ lineHeight: 44}}>{item.Title}</Text>
+                            <View style={{height:1, backgroundColor:'#ccc'}} />
                         </TouchableOpacity>
                     }
                 />

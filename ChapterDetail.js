@@ -8,11 +8,7 @@ import {
 } from 'react-native';
 
 
-export default class ChapterDetailScreen extends Component {
-    static navigationOptions = {
-        title: '详情',
-    };
-
+export default class ChapterDetailScreen extends Component {   
     constructor(props) {
         super(props);
         this.state = {
@@ -51,10 +47,9 @@ export default class ChapterDetailScreen extends Component {
         }
 
         return (
-            <ScrollView style={{ flex: 1 }}>
-                <Text>{this.state.data.Title}</Text>
-                <Text>{this.state.data.Author}</Text>
-                <Text>{this.state.data.Content}</Text>
+            <ScrollView style={{ flex: 1 }}>                
+                <Text style={{color:'#aaa', marginHorizontal:5, marginVertical:10}}>{this.state.data.Author}</Text>
+                <Text style={{color:'#aaa', marginHorizontal:5, marginVertical:10, lineHeight:20}}>{this.state.data.Content}</Text>
             </ScrollView>
         )
     }

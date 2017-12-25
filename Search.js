@@ -12,14 +12,13 @@ import {
     SearchBar
 } from 'react-native-elements';
 
-var { windowHeight, windowWidth } = Dimensions.get('window');
-
+import NovelView from './NovelView'
 
 export default class SearchScreen extends Component {
     static navigationOptions = {
         title: '首页',
     };
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -32,7 +31,7 @@ export default class SearchScreen extends Component {
 
     showNovel(item) {
         const { navigate } = this.props.navigation;
-        navigate('Detail', { novel: item })
+        navigate('Detail', { novel: item , titleName:item.Title})
     }
 
     search(loadNext) {
@@ -131,21 +130,12 @@ export default class SearchScreen extends Component {
                     }
                     keyExtractor={(item, index) => index}
                     renderItem={({ item }) =>
-                        <TouchableOpacity style={{ flex: 1, marginVertical: 5, marginHorizontal: 5 }} onPress={
-                            () => {
-                                this.showNovel(item)
-                            }
-                        }>
-                            <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <Image style={{ width: 100 }} source={{ uri: ("http:" + item.Coverimg) }} />
-                                <View style={{ width: windowWidth - 210, marginHorizontal: 5, backgroundColor: '#abc' }}>
-                                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>{item.Title}</Text>
-                                    <Text style={{ fontSize: 14 }}>{item.Author}</Text>
-                                    <Text style={{ fontSize: 14, height: 110 }}>{item.Summary}</Text>
-                                </View>
-                            </View>
-                            <View style={{ height: 1 }}></View>
-                        </TouchableOpacity>
+                    <View>
+                        <NovelView item={item} action={() => 
+                        this.showNovel(item)
+                        }/>            
+                        <View style={{height:1, backgroundColor:'#ccc', marginHorizontal:5}} />
+                    </View>
                     }
                 />
             </View>
