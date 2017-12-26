@@ -134,7 +134,6 @@ export default class SearchScreen extends Component {
                         <NovelView item={item} action={() => 
                         this.showNovel(item)
                         }/>            
-                        <View style={{height:1, backgroundColor:'#ccc', marginHorizontal:5}} />
                     </View>
                     }
                 />

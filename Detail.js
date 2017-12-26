@@ -70,9 +70,7 @@ export default class DetailScreen extends Component {
         novel = this.props.navigation.state.params.novel
         return (
             <View> 
-                <NovelView item={novel} />
-                <View style={{height:5}} />
-                <View style={{height:1, marginHorizontal:5, backgroundColor:'#ccc'}} />
+                <NovelView item={novel} />                
                 <View style={{height:5}} />
             </View>
         )
@@ -95,10 +93,10 @@ export default class DetailScreen extends Component {
                         this.loadData(this.state.page)
                     }
                     renderItem={({ item }) =>
-                        <TouchableOpacity style={{marginHorizontal:5 }} onPress={() => {
+                        <TouchableOpacity style={{backgroundColor:'white', paddingHorizontal:5}} onPress={() => {
                             this.showChapterDetail(item)
                         }}>
-                            <Text style={{ lineHeight: 44}}>{item.Title}</Text>
+                            <Text style={{ lineHeight: 44, color:'#888'}}>{item.Title}</Text>
                             <View style={{height:1, backgroundColor:'#ccc'}} />
                         </TouchableOpacity>
                     }

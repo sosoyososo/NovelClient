@@ -48,8 +48,8 @@ export default class ChapterDetailScreen extends Component {
 
         return (
             <ScrollView style={{ flex: 1 }}>                
-                <Text style={{color:'#aaa', marginHorizontal:5, marginVertical:10}}>{this.state.data.Author}</Text>
-                <Text style={{color:'#aaa', marginHorizontal:5, marginVertical:10, lineHeight:20}}>{this.state.data.Content}</Text>
+                <Text style={{color:'#888', marginHorizontal:5, marginVertical:10}}>{this.state.data.Author}</Text>
+                <Text style={{color:'#888', marginHorizontal:5, marginVertical:10, lineHeight:20}}>{this.state.data.Content}</Text>
             </ScrollView>
         )
     }
